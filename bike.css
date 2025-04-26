@@ -1,0 +1,185 @@
+/* Resetando alguns estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #f5f5f5;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("imagem\ de\ fundo.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Header e título principal */
+  h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 40px 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+  
+  /* Barra de navegação */
+  nav {
+    background-color: rgba(25, 25, 25, 0.9);
+    padding: 15px 30px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #e63946;
+  }
+  
+  nav a {
+    color: #ffffff;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #e63946;
+    color: #fff;
+  }
+  
+  nav a i {
+    margin-right: 8px;
+  }
+  
+  .login {
+    background-color: transparent;
+    border: 2px solid #e63946;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  
+  .login:hover {
+    background-color: #e63946;
+    color: #fff;
+  }
+  
+  /* Container dos produtos */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  /* Cards de produtos */
+  .caixa {
+    background-color: rgba(35, 35, 35, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .caixa:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Preços e destaques */
+  span {
+    color: #e63946;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  /* Botão de compra */
+  .botao {
+    background-color: #e63946;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: auto;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: block;
+  }
+  
+  .botao:hover {
+    background-color: #c1121f;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+  }
+  
+  .botao a {
+    color: white;
+    display: block;
+    width: 100%;
+  }
+  
+  /* Imagem do produto */
+  .produto-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .caixa {
+      width: 100%;
+    }
+    
+    nav {
+      flex-direction: column;
+      padding: 10px;
+    }
+    
+    nav a {
+      margin: 5px 0;
+    }
+  }
