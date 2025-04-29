@@ -1,13 +1,350 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Site em Manutenção</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Resetando alguns estilos padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/api/placeholder/1920/1080");
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        
+        /* Header e título principal */
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        p {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        
+        /* Container principal */
+        .maintenance-container {
+            background-color: rgba(35, 35, 35, 0.9);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Elementos destacados */
+        .highlight {
+            color: #e63946;
+            font-weight: bold;
+        }
+        
+        /* Animação da engrenagem */
+        .gear {
+            color: #e63946;
+            font-size: 80px;
+            animation: spin 8s linear infinite;
+            display: inline-block;
+            margin: 15px;
+        }
+        
+        .gear-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .gear-small {
+            color: #e63946;
+            font-size: 50px;
+            animation: spin-reverse 6s linear infinite;
+        }
+        
+        /* Animação da barra de progresso */
+        .progress {
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 30px 0;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background-color: #e63946;
+            animation: progress-animation 3s ease-in-out infinite alternate;
+        }
+        
+        /* Botão de notificação */
+        .notification-btn {
+            background-color: #e63946;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: block;
+            margin: 0 auto;
+            max-width: 250px;
+        }
+        
+        .notification-btn:hover {
+            background-color: #c1121f;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+        
+        /* Rodapé com redes sociais */
+        .social-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #e63946;
+            transform: translateY(-5px);
+            display: inline-block;
+        }
+        
+        /* Animações customizadas */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes spin-reverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        @keyframes progress-animation {
+            0% { width: 30%; }
+            100% { width: 70%; }
+        }
+        
+        /* Elemento pulsante */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Contador regressivo */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 20px;
+        }
+        
+        .countdown-item {
+            background-color: rgba(230, 57, 70, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            min-width: 80px;
+            text-align: center;
+            border: 1px solid rgba(230, 57, 70, 0.5);
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e63946;
+        }
+        
+        .countdown-label {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .maintenance-container {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                margin-bottom: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="mario.css">
 <body>
-    <h1><i class="bi bi-emoji-frown-fill"></i>pateu a preguiça no progamador deste arquivo farei o resto depois<i class="bi bi-emoji-frown-fill"></i></h1>
+    <div class="container">
+        <div class="maintenance-container animate__animated animate__fadeIn">
+            <h1 class="animate__animated animate__fadeInDown">Site em <span class="highlight">Manutenção</span></h1>
+            
+            <div class="gear-container">
+                <i class="fas fa-cog gear"></i>
+                <i class="fas fa-cog gear-small"></i>
+                <i class="fas fa-cog gear"></i>
+            </div>
+            
+            <h2 class="text-center animate__animated animate__fadeIn animate__delay-1s">Estamos melhorando sua experiência</h2>
+            
+            <p class="text-center animate__animated animate__fadeIn animate__delay-1s">
+                Nosso site está passando por atualizações importantes para oferecer uma experiência ainda melhor para você. 
+                Estamos trabalhando duro para voltar <span class="highlight">o mais rápido possível</span>.
+            </p>
+            
+            <div class="progress animate__animated animate__fadeIn animate__delay-1s">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <h3 class="text-center text-white animate__animated animate__fadeIn animate__delay-2s">Retornamos em:</h3>
+            
+            <div class="countdown animate__animated animate__fadeIn animate__delay-2s">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">02</div>
+                    <div class="countdown-label">Dias</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">12</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">45</div>
+                    <div class="countdown-label">Min</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">30</div>
+                    <div class="countdown-label">Seg</div>
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeIn animate__delay-2s">
+                <button class="notification-btn pulse">
+                    Receber notificação
+                </button>
+                <button class="notification-btn" id="back-btn" style="background-color: #333333; border: 2px solid #e63946;">
+                    <i class="fas fa-arrow-left me-2"></i>Voltar
+                </button>
+            </div>
+            
+            <div class="social-links animate__animated animate__fadeIn animate__delay-3s">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Data final para a contagem regressiva (3 dias a partir de agora)
+        const endDate = new Date();
+        endDate.setDate(endDate.getDate() + 3); // Data de término: 3 dias a partir de agora
+        
+        // Função para atualizar o contador regressivo
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = endDate.getTime() - now;
+            
+            // Cálculo dos dias, horas, minutos e segundos
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            // Atualiza os elementos na página
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Caso o tempo tenha terminado
+            if (timeLeft < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+        
+        // Atualizar o countdown cada segundo
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        
+        // Inicializar o countdown
+        updateCountdown();
+        
+        // Adicionar evento ao botão de notificação
+        document.querySelector('.notification-btn').addEventListener('click', function() {
+            alert('Você será notificado quando o site estiver online novamente!');
+        });
+        
+        // Adicionar evento ao botão voltar
+        document.getElementById('back-btn').addEventListener('click', function() {
+            window.history.back(); // Volta para a página anterior
+        });
+    </script>
 </body>
-</html><!--cara qual seu problema voce esta lendo este arquivo e literalmente um arquivo de manutençao voce achou qe teria algo aqui-->
+</html>
