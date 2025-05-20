@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Motors - Catálogo de Veículos</title>
+    <link rel="stylesheet" href="bike.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Estilos específicos para a página de catálogo */
+        .filtros {
+            background-color: rgba(35, 35, 35, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filtro-grupo {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .filtro-grupo label {
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .filtro-grupo select, .filtro-grupo input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(25, 25, 25, 0.9);
+            color: #ffffff;
+        }
+
+        .categorias {
+            display: flex;
+            justify-content: center;
+            margin: 25px auto;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 1200px;
+        }
+
+        .categoria-btn {
+            background-color: rgba(25, 25, 25, 0.9);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 2px solid #e63946;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .categoria-btn:hover, .categoria-btn.ativo {
+            background-color: #e63946;
+        }
+
+        .categoria-btn i {
+            margin-right: 8px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;
+            color: #ffffff;
+            font-size: 2.2rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e63946;
+            max-width: 1200px;
+            margin: 40px auto 20px;
+        }
+
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 10px;
+        }
+
+        .pagina {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(35, 35, 35, 0.9);
+            color: #ffffff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pagina:hover, .pagina.ativo {
+            background-color: #e63946;
+        }
+
+        .destaque-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e63946;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .caixa {
+            position: relative;
+        }
+
+        .info-rapida {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            color: #e0e0e0;
+        }
+
+        .info-item i {
+            margin-right: 5px;
+            color: #e63946;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="carros.html"><i class="bi bi-car-front-fill"></i> AUTO MOTORS</a>
+        </div>
+        <div class="menu">
+            <a href="carros.html" class="itens-menu"><i class="bi bi-house-fill"></i> Home</a>
+            <a href="manutenção.html" class="itens-menu"><i class="bi bi-collection"></i> Catálogo</a>
+            <a href="manutenção.html" class="itens-menu"><i class="bi bi-tag-fill"></i> Ofertas</a>
+            <a href="manutenção.html" class="itens-menu"><i class="bi bi-cart-plus-fill"></i> Carrinho</a>
+            <a href="login.html" class="login"><i class="bi bi-person"></i> Login</a>
+        </div>
+    </nav>
+
+    <h1>Catálogo Completo de Veículos</h1>
+
+    <div class="filtros">
+        <div class="filtro-grupo">
+            <label for="tipo">Tipo de Veículo</label>
+            <select id="tipo">
+                <option value="todos">Todos os Tipos</option>
+                <option value="sedan">Sedan</option>
+                <option value="suv">SUV</option>
+                <option value="hatch">Hatchback</option>
+                <option value="picape">Picape</option>
+                <option value="moto">Motocicleta</option>
+                <option value="bike">Bicicleta</option>
+            </select>
+        </div>
+        <div class="filtro-grupo">
+            <label for="marca">Marca</label>
+            <select id="marca">
+                <option value="todas">Todas as Marcas</option>
+                <option value="toyota">Toyota</option>
+                <option value="honda">Honda</option>
+                <option value="volkswagen">Volkswagen</option>
+                <option value="bmw">BMW</option>
+                <option value="audi">Audi</option>
+                <option value="mercedes">Mercedes-Benz</option>
+            </select>
+        </div>
+        <div class="filtro-grupo">
+            <label for="preco-min">Preço Mínimo</label>
+            <input type="number" id="preco-min" placeholder="R$ 0,00" min="0">
+        </div>
+        <div class="filtro-grupo">
+            <label for="preco-max">Preço Máximo</label>
+            <input type="number" id="preco-max" placeholder="R$ 1.000.000,00" min="0">
+        </div>
+        <div class="filtro-grupo">
+            <label for="ano">Ano</label>
+            <select id="ano">
+                <option value="todos">Todos os Anos</option>
+                <option value="2045">2045</option>
+                <option value="2044">2044</option>
+                <option value="2043">2043</option>
+                <option value="2042">2042</option>
+                <option value="2041">2041</option>
+                <option value="2040">2040 ou anterior</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="categorias">
+        <button class="categoria-btn ativo"><i class="bi bi-grid-fill"></i> Todos</button>
+        <button class="categoria-btn"><i class="bi bi-car-front-fill"></i> Carros</button>
+        <button class="categoria-btn"><i class="bi bi-truck"></i> SUVs & Picapes</button>
+        <button class="categoria-btn"><i class="bi bi-bicycle"></i> Bicicletas</button>
+        <button class="categoria-btn"><i class="bi bi-lightning-fill"></i> Elétricos</button>
+        <button class="categoria-btn"><i class="bi bi-star-fill"></i> Premium</button>
+    </div>
+
+    <h2 class="titulo-secao">Sedans & Hatchbacks</h2>
+
+    <div class="container">
+        <div class="caixa">
+            <div class="destaque-tag">Novidade</div>
+            <img src="sedan pre.webp" alt="Sedan Premium 2045" class="produto-img">
+            <h2>Sedan Premium Sport <span>R$ 199.990</span></h2>
+            <p>Modelo <span>2045</span> completo com acabamento premium e tecnologia de última geração.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 200km</div>
+                <div class="info-item"><i class="bi bi-fuel-pump"></i> Flex</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Automático</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+        
+        <div class="caixa">
+            <img src="carro 2045.webp" alt="Sedan Econômico" class="produto-img">
+            <h2>Sedan Econômico <span>R$ 129.990</span></h2>
+            <p>Modelo <span>2044</span> econômico com excelente custo-benefício e baixo consumo.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 15.000km</div>
+                <div class="info-item"><i class="bi bi-fuel-pump"></i> Flex</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Manual</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+        
+        <div class="caixa">
+            <div class="destaque-tag">Promoção</div>
+            <img src="carroesportivo.jpg" alt="Hatchback Esportivo" class="produto-img">
+            <h2>Hatchback Esportivo <span>R$ 159.990</span></h2>
+            <p>Modelo <span>2043</span> com motor turbo de <span>1.8</span>, perfeito para desempenho urbano.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 8.500km</div>
+                <div class="info-item"><i class="bi bi-fuel-pump"></i> Gasolina</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Automático</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="titulo-secao">SUVs & Picapes</h2>
+
+    <div class="container">
+        <div class="caixa">
+            <img src="carrofamila.jpg" alt="SUV modelo 2044" class="produto-img">
+            <h2>SUV Familiar <span>R$ 259.990</span></h2>
+            <p>Modelo <span>2044</span> com <span>7 lugares</span>, ideal para famílias e viagens longas.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 5.000km</div>
+                <div class="info-item"><i class="bi bi-fuel-pump"></i> Diesel</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Automático</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+        
+        <div class="caixa">
+            <div class="destaque-tag">Premium</div>
+            <img src="suvpre.webp" alt="SUV Premium" class="produto-img">
+            <h2>SUV Premium <span>R$ 389.990</span></h2>
+            <p>Modelo <span>2045</span> com interior em couro, teto solar panorâmico e câmbio automático de <span>9 marchas</span>.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 0km</div>
+                <div class="info-item"><i class="bi bi-fuel-pump"></i> Híbrido</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Automático</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+        
+        <div class="caixa">
+            <img src="picape.jpg" alt="Picape de Trabalho" class="produto-img">
+            <h2>Picape de Trabalho <span>R$ 179.990</span></h2>
+            <p>Modelo <span>2043</span> com <span>1 tonelada</span> de capacidade de carga e tração 4x4.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 25.000km</div>
+                <div class="info-item"><i class="bi bi-fuel-pump"></i> Diesel</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Manual</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="titulo-secao">Bicicletas & Veículos Elétricos</h2>
+
+    <div class="container">
+        <div class="caixa">
+            <div class="destaque-tag">Ecológico</div>
+            <img src="biclicleta 2045.webp" alt="Bicicleta Elétrica" class="produto-img">
+            <h2>Bicicleta Elétrica <span>R$ 8.990</span></h2>
+            <p>Modelo <span>2050</span> com bateria de longa duração e autonomia de <span>80km</span> por carga.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 20km</div>
+                <div class="info-item"><i class="bi bi-battery-charging"></i> 8h</div>
+                <div class="info-item"><i class="bi bi-lightning-fill"></i> 350W</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+        
+        <div class="caixa">
+            <img src="bikeforte.jpg" alt="Bicicleta Mountain" class="produto-img">
+            <h2>Bicicleta Mountain <span>R$ 4.990</span></h2>
+            <p>Modelo <span>2045</span> com <span>27 marchas</span> e suspensão completa para trilhas.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 0km</div>
+                <div class="info-item"><i class="bi bi-bicycle"></i> MTB</div>
+                <div class="info-item"><i class="bi bi-arrows-fullscreen"></i> Aro 29</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+        
+        <div class="caixa">
+            <div class="destaque-tag">Futuro</div>
+            <img src="sedaneletrico.jpg" alt="Carro Elétrico" class="produto-img">
+            <h2>Sedan Elétrico <span>R$ 289.990</span></h2>
+            <p>Modelo <span>2045</span> com autonomia de <span>600km</span> e recarga rápida em 30 minutos.</p>
+            
+            <div class="info-rapida">
+                <div class="info-item"><i class="bi bi-speedometer2"></i> 500km</div>
+                <div class="info-item"><i class="bi bi-lightning-fill"></i> Elétrico</div>
+                <div class="info-item"><i class="bi bi-gear"></i> Automático</div>
+            </div>
+            
+            <div class="botao">
+                <a href="#">Ver detalhes</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="paginacao">
+        <div class="pagina ativo">1</div>
+        <div class="pagina">2</div>
+        <div class="pagina">3</div>
+        <div class="pagina">4</div>
+        <div class="pagina"><i class="bi bi-chevron-right"></i></div>
+    </div>
+
+    <script>
+        // Código para interatividade básica
+        document.addEventListener('DOMContentLoaded', function() {
+            // Botões de categorias
+            const botoesCategorias = document.querySelectorAll('.categoria-btn');
+            botoesCategorias.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    botoesCategorias.forEach(b => b.classList.remove('ativo'));
+                    this.classList.add('ativo');
+                });
+            });
+
+            // Botões de paginação
+            const botoesPagina = document.querySelectorAll('.pagina');
+            botoesPagina.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    botoesPagina.forEach(b => b.classList.remove('ativo'));
+                    this.classList.add('ativo');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
